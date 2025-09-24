@@ -11,6 +11,14 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+///void manejoSeñal(int sign){
+	//char *argv[50];
+	//separaCmd(text, argv);
+//}
+
+void manejoPipe(char text[]){
+}
+
 int exitCmd(char text[]){
 	text[strcspn(text, "\n")] = '\0';
 	if(strcmp(text,"exit")==0){
@@ -54,6 +62,7 @@ void creaProceso(char text[]){
 }
 
 int main(){
+	system("clear");
 	printf("=======================================================================================================\n");
 	printf("Bienvenido a la Mi Shell, tarea 1 asignatura Sistemas Operativos, impartida el segundo semestre 2025.\n");
 	printf("La shell presentada fue desarrollada por los alumno: ... \n");
@@ -72,7 +81,11 @@ int main(){
 				printf("===== Hasta luego usuario =====\n");
 			    return 0;
 			}
-			creaProceso(text_usr);
+			if(strcspn(text_usr, "|")==0){
+				//pipe
+			}else{
+				creaProceso(text_usr);	
+			}
 		}
 	}
 	return 0;
