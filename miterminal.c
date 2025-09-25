@@ -11,12 +11,37 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-///void manejoSeñal(int sign){
-	//char *argv[50];
-	//separaCmd(text, argv);
+//void manejoSeñal(int sign){ 
+//	char *argv[50];
+//	separaCmd(text, argv);
 //}
 
 void manejoPipe(char text[]){
+	//primero, en un ciclo se revisa el numero de pipes (|) que hay
+	int nPipe = 0;
+	for(int i=0; text[i]!='\0';i++){
+		if(text[i]=='|'){
+			nPipe++;
+		}
+	}
+	char *subcmds[nPipe + 1]; //array de punteros, guardara los comandos que hay entre las pipes
+	int nCmd = 0;
+	char *aux=text; 
+	//despues creamos otro ciclo para separar los comandos de cada pipe
+	for(int i=0; text[i]!='\0';i++){
+		if(text[i]=='|'){
+			text[i]='\0';
+			subcmds[nCmd] = aux;
+			nCmd++;
+			aux = &text[i+1];
+		}
+	}
+	subcmds[nCmd++] = aux;
+
+	//ahora se debera convertir los sub-comandos de tal forma de que sean leidos por exec()
+	for(int i=0; i<nCmd; i++){
+		
+	}
 }
 
 int exitCmd(char text[]){
