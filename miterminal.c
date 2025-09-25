@@ -16,6 +16,12 @@
 //	separaCmd(text, argv);
 //}
 
+// Comando personalizado miprof
+//struct rusage usage;{}
+//getrusage(RUSAGE_CHILDREN, &usage);
+
+
+
 void manejoPipe(char text[]){
 	//primero, en un ciclo se revisa el numero de pipes (|) que hay
 	int nPipe = 0;
@@ -86,6 +92,11 @@ void creaProceso(char text[]){
 	}
 }
 
+// Comando personalizado
+void miprof(){
+	printf("Hola mundo\n");
+}
+
 int main(){
 	system("clear");
 	printf("=======================================================================================================\n");
@@ -99,6 +110,7 @@ int main(){
 		printf("mishell:$ ");
 		char text_usr[50];
 		fgets(text_usr, sizeof(text_usr), stdin);
+
 		if(text_usr[0] =='\n'){
 			continue;
 		}else{
@@ -106,7 +118,11 @@ int main(){
 				printf("===== Hasta luego usuario =====\n");
 			    return 0;
 			}
-			if(strcspn(text_usr, "|")==0){
+			// Comando personalizado
+			else if (strcmp(text_usr, "miprof") == 0){
+				miprof();
+			}
+			else if(strcspn(text_usr, "|")==0){
 				//pipe
 			}else{
 				creaProceso(text_usr);	
