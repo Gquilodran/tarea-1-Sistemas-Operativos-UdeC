@@ -47,14 +47,14 @@ ejecución se debe escribir los siguientes comandos en una shell:
 ```bash 
 # Comando para compilar
 gcc -o mishell mishell.c
-
-```bash 
+ 
 # Comando para ejecutar
 ./mishell.c
 
 Dentro del repositorio, igual existe un archivo ya compilado del codigo,
 por lo tanto queda al criterio del usuario si prefiere compilarlo nuevamente
 o utilizar el archivo ya existente.
+'''
 
 ## 📑 Licencia 
 Este codigo fue realizado con fines academicos por estudiantes de la universidad de Concepción,
