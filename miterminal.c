@@ -10,15 +10,12 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <sys/resource.h>
 
 //void manejoSeñal(int sign){ 
 //	char *argv[50];
 //	separaCmd(text, argv);
 //}
-
-// Comando personalizado miprof
-//struct rusage usage;{}
-//getrusage(RUSAGE_CHILDREN, &usage);
 
 
 
@@ -92,9 +89,127 @@ void creaProceso(char text[]){
 	}
 }
 
+// Función para acabar el proceso si el tiempo excede en miprof
+void handler(int sig){
+	printf("Tiempo máximo excedido. Terminando proceso...\n");
+	kill(0, SIGKILL);
+}
+
 // Comando personalizado
-void miprof(){
-	printf("Hola mundo\n");
+void miprof(char *argv[]){
+	if (argv[1] == NULL){
+		printf("Uso: miprof [ejec|ejecsave archivo|maxtiempo N] comando args...\n");
+		return;
+	}
+
+	struct timeval start, end;
+	struct rusage usage;
+	pid_t pid;
+	double real_time;
+
+	// Caso 1: miprof ejec
+	if (strcmp(argv[1], "ejec") == 0){
+		gettimeofday(&start, NULL);
+		pid = fork();
+		if (pid == 0){
+			execvp(argv[2], &argv[2]);
+			perror("execvp error");
+			exit(1);
+		}else{
+			waitpid(pid, NULL, 0);
+			gettimeofday(&end, NULL);
+			getrusage(RUSAGE_CHILDREN, &usage);
+
+			real_time = (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec)/1e6;
+
+			printf("=== Resultados miprof ===\n");
+			printf("Tiempo real: %.6f s\n", real_time);
+			printf("Tiempo usuario: %ld.%06ld s\n", usage.ru_utime.tv_sec, usage.ru_utime.tv_usec);
+			printf("Tiempo sistema: %ld.%06ld s\n", usage.ru_stime.tv_sec, usage.ru_stime.tv_usec);
+			printf("Max RSS: %ld KB\n", usage.ru_maxrss);
+		}
+	}
+	// Caso 2: miprof ejecsave archivo
+	else if (strcmp(argv[1], "ejecsave") == 0){
+		if (argv[2] == NULL){
+			printf("Se debe especificar un archivo");
+			return;
+		}
+		char *filename = argv[2];
+
+		gettimeofday(&start, NULL);
+		pid = fork();
+		if (pid == 0){
+			int fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
+			if (fd < 0){
+				perror("Error al abrir archivo");
+				exit(1);
+			}
+
+			dup2(fd, STDOUT_FILENO);
+			dup2(fd, STDERR_FILENO);
+			close(fd);  
+
+			dprintf(STDOUT_FILENO, "=== Comando: %s ===\n", argv[3]);
+			
+			execvp(argv[3], &argv[3]);
+			perror("execvp error");
+			exit(1);
+		}else{
+			waitpid(pid, NULL, 0);
+			gettimeofday(&end, NULL);
+			getrusage(RUSAGE_CHILDREN, &usage);
+
+			real_time = (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec)/1e6;
+
+			FILE *f = fopen(filename, "a");
+			if (f){
+				fprintf(f, "Tiempo real: %.6f s\n", real_time);
+				fprintf(f, "Tiempo usuario: %ld.%06ld s\n", usage.ru_utime.tv_sec, usage.ru_utime.tv_usec);
+				fprintf(f, "Tiempo sistema: %ld.%06ld s\n", usage.ru_stime.tv_sec, usage.ru_stime.tv_usec);
+				fprintf(f, "Max RSS: %ld KB\n", usage.ru_maxrss);
+				fclose(f);
+				printf("Realizado con éxito\n");
+			}else{
+				perror("Error al abrir archivo");
+			}
+		}
+	}
+
+	// Caso 3: miprof maxtiempo N
+	else if (strcmp(argv[1], "maxtiempo") == 0){
+		if (argv[2] == NULL){
+			printf("se debe especificar un tiempo en segundos\n");
+			return;
+		}
+		int tmax = atoi(argv[2]);
+
+		gettimeofday(&start, NULL);
+		pid = fork();
+		if (pid == 0){
+			execvp(argv[3], &argv[3]);
+			perror("execvp error");
+			exit(1);
+		}else{
+			signal(SIGALRM, handler);
+			alarm(tmax);
+			waitpid(pid, NULL, 0);
+			gettimeofday(&end, NULL);
+			getrusage(RUSAGE_CHILDREN, &usage);
+
+			real_time = (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec)/1e6;
+
+			printf("=== Resultados miprof (límite %ds) ===\n", tmax);
+			printf("Tiempo real: %.6f s\n", real_time);
+			printf("Tiempo usuario: %ld.%06ld s\n", usage.ru_utime.tv_sec, usage.ru_utime.tv_usec);
+			printf("Tiempo sistema: %ld.%06ld s\n", usage.ru_stime.tv_sec, usage.ru_stime.tv_usec);
+			printf("Max RSS: %ld KB\n", usage.ru_maxrss);
+		}
+	}
+
+	else{
+		printf("Error, opción desconocida: %s\n", argv[1]);
+	}
 }
 
 int main(){
@@ -119,8 +234,10 @@ int main(){
 			    return 0;
 			}
 			// Comando personalizado
-			else if (strcmp(text_usr, "miprof") == 0){
-				miprof();
+			else if (strncmp(text_usr, "miprof", 6) == 0){
+				char *argv[50];
+				separaCmd(text_usr, argv);
+				miprof(argv);
 			}
 			else if(strcspn(text_usr, "|")==0){
 				//pipe
