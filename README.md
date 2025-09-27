@@ -1,7 +1,9 @@
 # 🐚 tarea-1-Sistemas-Operativos-UdeC
 
 ## 👤 Autores del Codigo
-
+- Joaquín Sandoval
+- José
+- Gonzalo Quilodrán Neira.
 
 ## 📌 Descripción
 Este proyecto fue realizado para la asignatura 501251-1 Sistemas Operativos, dictado por el de partamento de 
@@ -31,6 +33,12 @@ para usar de ejemplo algunso comando en nuestra shell.
 - [ ] `miprof maxtiempo N`
 - [ ] Análisis de uso con `sort` y archivos de texto
 
+Para la ejecución del comando personaliszado, se debe ejecutar de la siguiente forma:
+```bash
+miprof ejec [comando deseado]
+//ejemplo 
+miprof ejec ls -l
+```
 ## 📦 Requisitos
 
 - Sistema Operativo: La shell fue creada en base de un sistema Unix/Linux, se recomienda
