@@ -1,0 +1,12 @@
+=== Comando: ls ===
+total 36
+-rwxrwxrwx 1 gonzalo gonzalo  2343 Sep 27 20:13 README.md
+drwxrwxrwx 1 gonzalo gonzalo   512 Sep 24 18:35 f
+-rwxrwxrwx 1 gonzalo gonzalo 21496 Sep 27 20:25 mishell
+-rwxrwxrwx 1 gonzalo gonzalo  7819 Sep 27 20:25 mishell.c
+-rwxrwxrwx 1 gonzalo gonzalo    20 Sep 27 20:46 salida.txt
+-rwxrwxrwx 1 gonzalo gonzalo     4 Sep 24 19:22 text.txt
+Tiempo real: 0.107013 s
+Tiempo usuario: 0.005415 s
+Tiempo sistema: 0.000000 s
+Max RSS: 2560 KB
