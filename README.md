@@ -3,7 +3,11 @@
 ## 👤 Autores del Codigo
 - Joaquín Sandoval
 - José
+<<<<<<< HEAD
 - Gonzalo Quilodrán Neira.
+=======
+- Gonzalo Quilodrán
+>>>>>>> d6c44d4a6f3efcaff6fc962dd64418fc04d0ecb9
 
 ## 📌 Descripción
 Este proyecto fue realizado para la asignatura 501251-1 Sistemas Operativos, dictado por el de partamento de 
