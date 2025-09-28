@@ -33,11 +33,11 @@ para usar de ejemplo algunso comando en nuestra shell.
 - [ ] `miprof maxtiempo N`
 - [ ] Análisis de uso con `sort` y archivos de texto
 
-Para la ejecución del comando personalizado, se debe ejecutar de la siguiente forma:
+Para la ejecución del comando personalizado, se debe ejecutar de la siguientes formas:
 ```bash
-miprof ejec [comando deseado]
-//ejemplo 
-miprof ejec ls -l
+1- miprof ejec [comando deseado]  //ejemplo: miprof ejec ls -l
+2- miprof ejecsave archivo comando //ejemplo: miprof ejecsave salida.txt ls -l
+3- miprof maxtiempo N comando //ejemplo: miprof maxtiempo 3 sleep 10
 ```
 ## 📦 Requisitos
 
