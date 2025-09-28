@@ -12,10 +12,6 @@
 #include <fcntl.h>
 #include <sys/resource.h>
 
-//void manejoSeñal(int sign){ 
-//	char *argv[50];
-//	separaCmd(text, argv);
-//}
 
 
 //Funcion que a los comandos ingresados por el usuario, los transforma de forma de que el sistema
