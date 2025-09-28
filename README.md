@@ -1,19 +1,15 @@
 # 🐚 tarea-1-Sistemas-Operativos-UdeC
 
 ## 👤 Autores del Codigo
-- Joaquín Sandoval
-- José
-<<<<<<< HEAD
+- Joaquín Sandoval Reyes.
+- José González Aguayo.
 - Gonzalo Quilodrán Neira.
-=======
-- Gonzalo Quilodrán
->>>>>>> d6c44d4a6f3efcaff6fc962dd64418fc04d0ecb9
 
 ## 📌 Descripción
-Este proyecto fue realizado para la asignatura 501251-1 Sistemas Operativos, dictado por el de partamento de 
+Este proyecto fue realizado para la asignatura 501251-1 Sistemas Operativos, dictado por el departamento de 
 Ingeneria Informatica y ciencias de la Computacion (DIICC) de la universidad de Concepción.
 
-El proyecto consiste en la creacion de un interprete de comandos (Shell) basado en un sistema Linux/Unix,
+El proyecto consiste en la creación de un interprete de comandos (Shell) basado en un sistema Linux/Unix,
 la cuál funcionara para la aplicación de conocimientos sobre creación de procesos, uso de pipes y señales del sistemas. 
 Para el desarrollo de proyecto se uso el lenguaje C.
 
@@ -37,11 +33,11 @@ para usar de ejemplo algunso comando en nuestra shell.
 - [ ] `miprof maxtiempo N`
 - [ ] Análisis de uso con `sort` y archivos de texto
 
-Para la ejecución del comando personaliszado, se debe ejecutar de la siguiente forma:
+Para la ejecución del comando personalizado, se debe ejecutar de la siguientes formas:
 ```bash
-miprof ejec [comando deseado]
-//ejemplo 
-miprof ejec ls -l
+1- miprof ejec [comando deseado]  //ejemplo: miprof ejec ls -l
+2- miprof ejecsave archivo comando //ejemplo: miprof ejecsave salida.txt ls -l
+3- miprof maxtiempo N comando //ejemplo: miprof maxtiempo 3 sleep 10
 ```
 ## 📦 Requisitos
 
@@ -61,7 +57,7 @@ ejecución se debe escribir los siguientes comandos en una shell:
 gcc -o mishell mishell.c
  
 # Comando para ejecutar
-./mishell.c
+./mishell
 ```
 
 Dentro del repositorio, igual existe un archivo ya compilado del codigo,
@@ -70,7 +66,7 @@ o utilizar el archivo ya existente.
 
 ## 📑 Licencia 
 Este codigo fue realizado con fines academicos por estudiantes de la universidad de Concepción,
-se proibe su distribución con otros fines.
+se prohíbe su distribución con otros fines.
 
 
 
