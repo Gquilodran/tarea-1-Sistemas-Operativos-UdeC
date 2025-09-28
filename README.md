@@ -2,7 +2,7 @@
 
 ## 👤 Autores del Codigo
 - Joaquín Sandoval Reyes.
-- José
+- José González Agua.
 - Gonzalo Quilodrán Neira.
 
 ## 📌 Descripción
