@@ -57,7 +57,7 @@ ejecución se debe escribir los siguientes comandos en una shell:
 gcc -o mishell mishell.c
  
 # Comando para ejecutar
-./mishell.c
+./mishell
 ```
 
 Dentro del repositorio, igual existe un archivo ya compilado del codigo,
