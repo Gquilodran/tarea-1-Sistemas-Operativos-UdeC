@@ -6,10 +6,10 @@
 - Gonzalo Quilodrán Neira.
 
 ## 📌 Descripción
-Este proyecto fue realizado para la asignatura 501251-1 Sistemas Operativos, dictado por el de partamento de 
+Este proyecto fue realizado para la asignatura 501251-1 Sistemas Operativos, dictado por el departamento de 
 Ingeneria Informatica y ciencias de la Computacion (DIICC) de la universidad de Concepción.
 
-El proyecto consiste en la creacion de un interprete de comandos (Shell) basado en un sistema Linux/Unix,
+El proyecto consiste en la creación de un interprete de comandos (Shell) basado en un sistema Linux/Unix,
 la cuál funcionara para la aplicación de conocimientos sobre creación de procesos, uso de pipes y señales del sistemas. 
 Para el desarrollo de proyecto se uso el lenguaje C.
 
@@ -33,7 +33,7 @@ para usar de ejemplo algunso comando en nuestra shell.
 - [ ] `miprof maxtiempo N`
 - [ ] Análisis de uso con `sort` y archivos de texto
 
-Para la ejecución del comando personaliszado, se debe ejecutar de la siguiente forma:
+Para la ejecución del comando personalizado, se debe ejecutar de la siguiente forma:
 ```bash
 miprof ejec [comando deseado]
 //ejemplo 
@@ -66,7 +66,7 @@ o utilizar el archivo ya existente.
 
 ## 📑 Licencia 
 Este codigo fue realizado con fines academicos por estudiantes de la universidad de Concepción,
-se proibe su distribución con otros fines.
+se prohíbe su distribución con otros fines.
 
 
 
